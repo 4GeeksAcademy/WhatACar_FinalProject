@@ -9,6 +9,7 @@ db = SQLAlchemy()
 class IdDocument(Enum):
     DNI = 'DNI'
     CIF = 'CIF'
+    
 
 class UserRole(Enum): #Solo se pueden usar los roles que pongamos aquí
     BUYER = 'buyer'
