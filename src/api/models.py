@@ -9,6 +9,7 @@ db = SQLAlchemy()
 class IdDocument(Enum):
     DNI = 'DNI'
     CIF = 'CIF'
+    
 
 class UserRole(Enum): #Solo se pueden usar los roles que pongamos aquí
     BUYER = 'buyer'
@@ -78,6 +79,13 @@ class ProductState(Enum):
     NUEVO = 'nuevo'
     SEMINUEVO = 'seminuevo'
 
+class fuel_type(Enum):
+    DIESEL = 'diesel'
+    GASOLINA = 'gasolina'
+    HIBRIDO = 'hibrido'
+    ELECTRICO = 'electrico'
+    
+
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -88,7 +96,7 @@ class Product(db.Model):
     image_id = db.Column(db.Integer, db.ForeignKey('image.id')) 
     year = db.Column(db.Integer)
     km = db.Column(db.Integer)
-    fuel = db.Column(db.Integer)
+    fuel = db.Column(db.Enum(fuel_type))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     brand_id = db.Column(db.Integer, db.ForeignKey('brand.id'))
     model_id = db.Column(db.Integer, db.ForeignKey('model.id'))
